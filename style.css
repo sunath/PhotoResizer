@@ -1,3 +1,7 @@
+.image-file {
+    display: none;
+}
+
 .image-resizer{
     
     width: var(--width);
@@ -24,11 +28,14 @@
 .new-image{
     position: absolute;
     width: var(--width);
-    left: -2rem;
+    height: var(--height);
+    /* left: -2rem; */
     top: 0;
 }
 
 .og-image{
+    width: var(--width);
+    height: var(--height);
     filter: brightness(.2);
 }
 

@@ -1,9 +1,39 @@
+
+
+const file = document.querySelector(".image-file")
+const upload_button = document.querySelector(".upload-button")
+
+
+
 const originalImage = document.querySelector(".og-image")
 
 const imageResizer = document.querySelector(".image-resizer")
 
-const height = originalImage.naturalHeight;
-const width = originalImage.naturalWidth;
+let height = originalImage.naturalHeight;
+let width = originalImage.naturalWidth;
+
+let nonScaleWidth = width
+let nonScaleHeight = height
+
+
+function scaleWidthHeight() {
+  if(width > 1000){
+     const scaler = Math.round(width / 1000)
+     height = height / scaler
+     width = width / scaler
+  }
+}
+
+originalImage.addEventListener('load',(e) => {
+  height = originalImage.naturalHeight
+  width = originalImage.naturalWidth
+
+
+  scaleWidthHeight()
+  document.documentElement.style.setProperty('--height',height+'px')
+document.documentElement.style.setProperty('--width',width+'px')
+
+})
 
 document.documentElement.style.setProperty('--height',height+'px')
 document.documentElement.style.setProperty('--width',width+'px')
@@ -11,6 +41,30 @@ document.documentElement.style.setProperty('--width',width+'px')
 
 let targetWidth = '400px'
 let targetHeight = '400px'
+
+
+
+file.addEventListener('change',(e) => {
+  const files = e.target.files
+  if(files[0]){
+    let url =   URL.createObjectURL(files[0])
+    originalImage.src = url
+    newImage.src = url
+
+
+  }
+
+
+
+
+})
+
+
+upload_button.addEventListener('click',(e) => {
+  file.click()
+})
+
+
 
 
 
