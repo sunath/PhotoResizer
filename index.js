@@ -12,6 +12,8 @@ const imageResizer = document.querySelector(".image-resizer")
 let height = originalImage.naturalHeight;
 let width = originalImage.naturalWidth;
 
+let imageURL = originalImage.src;
+
 let nonScaleWidth = width
 let nonScaleHeight = height
 
@@ -27,9 +29,7 @@ function scaleWidthHeight() {
 originalImage.addEventListener('load',(e) => {
   height = originalImage.naturalHeight
   width = originalImage.naturalWidth
-
-
-  scaleWidthHeight()
+scaleWidthHeight()
   document.documentElement.style.setProperty('--height',height+'px')
 document.documentElement.style.setProperty('--width',width+'px')
 
@@ -137,7 +137,7 @@ controller.addEventListener('mousedown',(e) => {
         controller.style.top = positionY + "px"
       }
 
-      console.log(controllerPosition.bottom,controllerPosition.y,mouseYDifference,imageResizerRect.bottom)
+      // console.log(controllerPosition.bottom,controllerPosition.y,mouseYDifference,imageResizerRect.bottom)
 
     //   console.log(e.clientX , mouseX)
     //   console.log(positionX)
@@ -169,3 +169,74 @@ controller.addEventListener('mousedown',(e) => {
 
 
 
+
+
+
+
+document.querySelector(".download-button").addEventListener('click',(e) => {
+  e.preventDefault()
+
+  // console.log("hello")
+
+  // const canvas = document.querySelector("canvas")
+
+
+  if(document.querySelector("canvas")){
+    document.querySelector("canvas").remove()
+  }
+
+
+  const canvas = document.createElement("canvas")
+  const context = canvas.getContext("2d")
+
+  canvas.className = "canvas"
+
+
+  document.querySelector(".canvas").appendChild(canvas)
+
+
+  const downloadableImage = new Image()
+  downloadableImage.src = originalImage.src
+  const imageLeftOffset = controller.computedStyleMap().get('left').value
+  const imageTopOffset = controller.computedStyleMap().get('top').value
+  const downloadHeight = downloadableImage.naturalHeight
+  const downloadWidth = downloadableImage.naturalWidth
+
+  canvas.width = 400
+  canvas.height = 400
+
+
+  console.log(downloadWidth,downloadHeight,imageLeftOffset,imageTopOffset)
+  downloadableImage.onload = () => {
+    // context.clearRect(0,0,1000000,1000000)
+    // context.drawImage(downloadableImage,0,0,downloadWidth,downloadHeight,imageLeftOffset,imageTopOffset,400,400)
+    context.drawImage(downloadableImage,imageLeftOffset,imageTopOffset,400,400,0,0,400,400)
+
+
+    
+    const link = document.createElement("a")
+
+    link.download = "image.jpeg"
+  
+    // console.log(canvas.)
+  
+    link.href = canvas.toDataURL("image/jpeg")
+  
+    link.textContent = "Hello Download this"
+    document.body.appendChild(link)
+  
+    link.click()
+  
+  
+    link.remove()
+  }
+
+// 
+  // window.open(canvas.toDataURL("image/jpeg"),"_blank")
+
+
+
+
+
+  
+})
