@@ -5,35 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Resizer</title>
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./components.css">
 </head>
 <body>
 
 
-    <input type="file" class="image-file">
-    <button class="upload-button">Upload a image</button>
+    <div id="root">
 
 
-
-    <div class="image-resizer">
-        <img class="og-image" src="img.jpg" alt="">
-
-        <div class="controller" draggable="true">
-            <img class="new-image" src="img.jpg" alt="">
-
-            <!-- <button class="top-dragger" draggable="true"></button> -->
+        <div class="image-resizer">
+            <img class="og-image" src="img.jpg" alt="">
+    
+            <div class="controller" draggable="true">
+                <img class="new-image" src="img.jpg" alt="">
+    
+                <!-- <button class="top-dragger" draggable="true"></button> -->
+        </div>
+        </div>
+    
+    
+    
+    
+        <div class="cropper-actions">
+    
+            <input type="file" class="image-file">
+            <button class="btn upload-button">Upload a image</button>
+        
+        
+            <div class="canvas">
+                
+            </div>
+        
+            <button class="btn download-button">Download Croped Image</button>
+    
+            
         </div>
 
-        
-
 
     </div>
 
 
-    <div class="canvas">
-        
-    </div>
+ 
+    
 
-    <button class="download-button">Download Croped Image</button>
 
     <script src="./index.js"></script>
 </body>

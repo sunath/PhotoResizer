@@ -17,10 +17,11 @@ let imageURL = originalImage.src;
 let nonScaleWidth = width
 let nonScaleHeight = height
 
+let scaler = 1
 
 function scaleWidthHeight() {
   if(width > 1000){
-     const scaler = Math.round(width / 1000)
+    scaler = Math.round(width / 1000)
      height = height / scaler
      width = width / scaler
   }
@@ -201,16 +202,41 @@ document.querySelector(".download-button").addEventListener('click',(e) => {
   const imageTopOffset = controller.computedStyleMap().get('top').value
   const downloadHeight = downloadableImage.naturalHeight
   const downloadWidth = downloadableImage.naturalWidth
+  downloadableImage.height = height
+  downloadableImage.width = width
 
-  canvas.width = 400
+  canvas.width = 400  
   canvas.height = 400
+
+
+  console.log(imageLeftOffset,imageTopOffset)
 
 
   console.log(downloadWidth,downloadHeight,imageLeftOffset,imageTopOffset)
   downloadableImage.onload = () => {
     // context.clearRect(0,0,1000000,1000000)
     // context.drawImage(downloadableImage,0,0,downloadWidth,downloadHeight,imageLeftOffset,imageTopOffset,400,400)
-    context.drawImage(downloadableImage,imageLeftOffset,imageTopOffset,400,400,0,0,400,400)
+    // context.drawImage(originalImage,imageLeftOffset,imageTopOffset,400,400,height,imageLeftOffset,imageTopOffset,width,height)
+
+    // context.drawImage(originalImage,
+    //   imageLeftOffset*scaler,
+    //   imageTopOffset*scaler,
+    //   width*scaler +  imageLeftOffset*scaler,
+    //   height*scaler +      imageTopOffset*scaler
+    //   , -imageLeftOffset*scaler,- imageTopOffset*scaler,400,400)
+
+
+    context.drawImage(
+      originalImage,
+      imageLeftOffset * scaler,
+      imageTopOffset * scaler,
+      400 * scaler,
+      400 * scaler,
+      0,
+      0,
+      400,
+      400
+    )
 
 
     
@@ -229,6 +255,8 @@ document.querySelector(".download-button").addEventListener('click',(e) => {
   
   
     link.remove()
+
+    canvas.remove()
   }
 
 // 
