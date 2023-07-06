@@ -1,0 +1,45 @@
+:root{
+    --resize-actions-bg:#1F1F1F;
+}
+
+.resize-tab{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.resize-img-container{
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.resize-img-actions{
+    width: 20%;
+    /* width: 15%; */
+    background-color: var(--resize-actions-bg);
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content:center;
+    flex-direction: column;
+}
+
+.resize-img-resize-range-input{
+    margin-top: 1rem;
+}
+
+.resize-img-buttons{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.resize-action-btn{
+    margin: 2rem 0 ;
+}

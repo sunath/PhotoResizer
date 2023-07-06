@@ -3,61 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Resizer</title>
+    <title>Cropper</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./components.css">
+
+    <!-- <link rel="stylesheet" href="./cropper.css"> -->
+    <link rel="stylesheet" href="./tab-cropper.css">
+    <link rel="stylesheet" href="./resize.css">
+
 </head>
 <body>
-
+    
 
     <div id="root">
 
+        <div class="sidebar">
+
+            <div class="logo">Logo</div>
+
+            <button id="btn-crop" class="btn">Crop</button>
+            <button class="btn btn-resize">Resize</button>
+            <button class="btn btn-resize">Combine</button>
+            <button class="btn btn-text">Write Text</button>
+            <button class="btn btn-lighting">Lighting</button>
+
+        </div>
+
+        <div class="content">
             
-        <div class="cropper-actions">
-    
-            <input type="file" class="image-file">
-            <button class="btn upload-button">Upload a image</button>
-        
-        
-            <div class="canvas">
+            <div class="tabs">
                 
+                <!-- <div class="tab crop-tab tab-active">Crop 1
+                    <button class="btn btn-tab-close"><span class="material-symbols-outlined">close</span>
+                    </button> 
+                </div>
+
+                <div class="tab resize-tab">Resize 1
+                    <button class="btn btn-tab-close"><span class="material-symbols-outlined">close</span>
+                    </button> 
+                </div> -->
+
             </div>
-        
-            <button class="btn download-button">Download Croped Image</button>
-    
-            
+
+
+            <div class="tab-content">
+
+                <div class="tab-row resize-tab">
+                    
+                    <div class="resize-img-container">
+                        <img src="./img.jpg" alt="" class="resize-image-preview">
+                    </div>
+
+                    <div class="resize-img-actions">
+                        <input type="file" class="resize-img-action-file" style="display: none;">
+
+                        <h4>Reduce your image quality to n%</h4>
+                        <input type="range" class="resize-img-resize-range-input" max="100" min="10">
+                        <div class="resize-img-buttons">
+                            <button class="btn resize-action-btn resize-new-image">
+                                <span class="material-symbols-outlined">upload</span>
+                            </button>
+
+                            <button class="btn resize-action-btn">
+                                <span class="material-symbols-outlined">download</span>
+                            </button>
+
+
+                        </div>
+                       
+
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
-
-
-        
-
-
-        <div class="image-resizer">
-            <img class="og-image" src="5.jpg" alt="">
-    
-            <div class="controller" draggable="true">
-                <img class="new-image" src="5.jpg" alt="">   
-                <!-- <button class="top-dragger" draggable="true"></button> -->
-        </div>
-
-        <div class="top-dragger"></div>
-        <div class="bottom-dragger"></div>
-        <div class="left-dragger"></div>
-        <div class="right-dragger"></div>
-
-        </div>
-    
-    
-    
-
-
     </div>
 
 
- 
-    
 
-
+    <script src="./tabs.js"></script>
     <script src="./index.js"></script>
+    <script src="./resizer.js"></script>
 </body>
 </html>

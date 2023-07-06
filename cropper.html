@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Resizer</title>
+    <link rel="stylesheet" href="./cropper.css">
+    <link rel="stylesheet" href="./components.css">
+</head>
+<body>
+
+
+    <div id="root">
+
+
+        <div class="sidebar">
+            
+        </div>
+
+            
+        <div class="cropper-actions">
+    
+            <input type="file" class="image-file" accept="image/jpeg, image/jpg">
+            <button class="btn upload-button">Upload a image</button>
+        
+        
+            <div class="canvas">
+                
+            </div>
+        
+            <button class="btn download-button">Download Croped Image</button>
+    
+            
+        </div>
+
+
+        
+
+
+        <div class="image-resizer">
+            <img class="og-image" src="5.jpg" alt="">
+    
+            <div class="controller" draggable="true">
+                <img class="new-image" src="5.jpg" alt="">   
+                <!-- <button class="top-dragger" draggable="true"></button> -->
+        </div>
+
+        <div class="top-dragger"></div>
+        <div class="bottom-dragger"></div>
+        <div class="left-dragger"></div>
+        <div class="right-dragger"></div>
+
+        </div>
+    
+    
+    
+
+
+    </div>
+
+
+ 
+    
+
+
+    <script src="./index.js"></script>
+</body>
+</html>

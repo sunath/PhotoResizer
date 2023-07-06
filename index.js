@@ -1,13 +1,15 @@
 
 
-const file = document.querySelector(".image-file")
-const upload_button = document.querySelector(".upload-button")
+function createCropperActions (selector,id) {
+
+const file = selector.querySelector(".image-file")
+const upload_button = selector.querySelector(".upload-button")
 
 
 
-const originalImage = document.querySelector(".og-image")
+const originalImage = selector.querySelector(".og-image")
 
-const imageResizer = document.querySelector(".image-resizer")
+const imageResizer = selector.querySelector(".image-resizer")
 
 let height = originalImage.naturalHeight;
 let width = originalImage.naturalWidth;
@@ -38,15 +40,15 @@ originalImage.addEventListener('load',(e) => {
   height = originalImage.naturalHeight
   width = originalImage.naturalWidth
 scaleWidthHeight()
-  document.documentElement.style.setProperty('--height',height+'px')
-document.documentElement.style.setProperty('--width',width+'px')
+  document.documentElement.style.setProperty('--height-'+id,height+'px')
+document.documentElement.style.setProperty('--width-'+id,width+'px')
 
 setControllerProperties(Math.round(width / 4)+"px",Math.round(height  / 4)+"px",0+"px",0+"px")
 
 })
 
-document.documentElement.style.setProperty('--height',height+'px')
-document.documentElement.style.setProperty('--width',width+'px')
+document.documentElement.style.setProperty('--height-'+id,height+'px')
+document.documentElement.style.setProperty('--width-'+id,width+'px')
 
 
 let targetWidth = '400px'
@@ -79,19 +81,19 @@ document.documentElement.style.setProperty('--target-width',targetWidth)
 
 
 
-const controller = document.querySelector(".controller")
+const controller = selector.querySelector(".controller")
 // const button = document.querySelector("button")
-const newImage = document.querySelector(".new-image")
+const newImage = selector.querySelector(".new-image")
 
 
 controller.style.maxWidth = originalImage.style.maxWidth
 
 // Controller resizer
 
-const topResize = document.querySelector(".top-dragger")
-const bottomResize = document.querySelector(".bottom-dragger")
-const leftResize = document.querySelector(".left-dragger")
-const rightResize = document.querySelector(".right-dragger")
+const topResize = selector.querySelector(".top-dragger")
+const bottomResize = selector.querySelector(".bottom-dragger")
+const leftResize = selector.querySelector(".left-dragger")
+const rightResize = selector.querySelector(".right-dragger")
 
 bottomResize.style.top = (controller.computedStyleMap().get('top').value + controller.computedStyleMap().get('height').value) + "px"
 rightResize.style.left = (controller.computedStyleMap().get('left').value + controller.computedStyleMap().get('width').value) + "px"
@@ -259,12 +261,14 @@ controller.addEventListener('mousedown',(e) => {
 
 
 
-document.querySelector(".download-button").addEventListener('click',(e) => {
+selector.querySelector(".download-button").addEventListener('click',(e) => {
   e.preventDefault()
 
   // console.log("hello")
 
   // const canvas = document.querySelector("canvas")
+
+  // console.log("clicked")
 
 
   if(document.querySelector("canvas")){
@@ -340,6 +344,8 @@ document.querySelector(".download-button").addEventListener('click',(e) => {
     document.body.appendChild(link)
   
     link.click()
+
+    // console.log("clicked the link")
   
   
     link.remove()
@@ -624,3 +630,6 @@ rightResize.addEventListener('mousedown',(e) => {
   })
 
 })
+
+
+}
