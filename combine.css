@@ -1,0 +1,35 @@
+.combine-tab{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 5rem;
+}
+
+.editor{
+    width: 500px;
+    height: 500px;
+    background-color: white;
+    position: relative;
+}
+
+.combine-tab-new-image-input{
+    display: none;
+}
+
+.combine-tab-controls{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.combine-images{
+    position: relative;
+}
+
+.combine-images > .combine-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+}

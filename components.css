@@ -3,6 +3,17 @@
 }
 
 
+input[type='text'],
+input[type='number'] {
+    padding: .5rem 2rem;
+    width: 200px;
+    background-color: #292929;
+    margin: 1rem;
+    box-shadow: none;
+    outline: none;
+    border: none;
+}
+
 .btn {
     background-color: var(--button-primary-background);
     padding: .5rem 2rem;

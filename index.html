@@ -15,6 +15,7 @@
     <!-- <link rel="stylesheet" href="./cropper.css"> -->
     <link rel="stylesheet" href="./tab-cropper.css">
     <link rel="stylesheet" href="./resize.css">
+    <link rel="stylesheet" href="./combine.css">
 
 </head>
 <body>
@@ -48,39 +49,53 @@
                     </button> 
                 </div> -->
 
+          
+
             </div>
 
 
             <div class="tab-content">
 
-                <div class="tab-row resize-tab">
-                    
-                    <div class="resize-img-container">
-                        <img src="./img.jpg" alt="" class="resize-image-preview">
-                    </div>
+                <div class="tab-view combine-tab">
 
-                    <div class="resize-img-actions">
-                        <input type="file" class="resize-img-action-file" style="display: none;">
+                        <div class="editor">
+                           <div class="combine-images">
 
-                        <h4>Reduce your image quality to n%</h4>
-                        <input type="range" class="resize-img-resize-range-input" max="100" min="10">
-                        <div class="resize-img-buttons">
-                            <button class="btn resize-action-btn resize-new-image">
-                                <span class="material-symbols-outlined">upload</span>
-                            </button>
+                           </div>
+                        </div>
 
-                            <button class="btn resize-action-btn">
-                                <span class="material-symbols-outlined">download</span>
-                            </button>
+                        <div class="combine-tab-controls">
+
+                                
+                            <div class="combine-image-settings">
+                                <h4>Combine Image Settings</h4>
+
+
+                                <input type="number" placeholder="width" value="500" class="combine-image-width">
+                                <br />
+                                <input type="text" placeholder="height" value="500"  class="combine-image-height">
+
+                            </div>
+
+
+                            <input type="file" class="combine-tab-new-image-input">
+                            <button class="btn new-image-add-button">Add a image</button>
+
+                        
+
+                            <div class="current-images-list">
+
+                            </div>
+
+
+                            <div class="combine-selected-layer">
+
+                            </div>
 
 
                         </div>
-                       
-
-                    </div>
-
                 </div>
-
+                
             </div>
 
         </div>
@@ -91,5 +106,6 @@
     <script src="./tabs.js"></script>
     <script src="./index.js"></script>
     <script src="./resizer.js"></script>
+    <script src="./combine.js"></script>
 </body>
 </html>

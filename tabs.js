@@ -5,6 +5,11 @@
  */
 
 
+const cropperTabAdder = document.querySelector("#btn-crop")
+const resizeTabAdder = document.querySelector(".btn-resize")
+let cropperTabNumber = 1;
+let resizeTabNum = 1;
+
 const setActiveTab = (tabNumber) => {
     let i = 0; 
     for(const tab of document.querySelectorAll(".tab-view")){
@@ -16,6 +21,13 @@ const setActiveTab = (tabNumber) => {
         }
 
         i+=1
+    }
+}
+
+
+function clearActiveTabs(){
+    for(const t of document.querySelectorAll(".tab-view")){
+        t.style.display = 'none';
     }
 }
 
@@ -58,9 +70,8 @@ const cropperTabContent = (id) =>  `
 
 `
 
-// Cropper Tabs
-const cropperTabAdder = document.querySelector("#btn-crop")
-let cropperTabNumber = 1;
+
+
 
 
 const getCropperId = (e) => {
@@ -71,9 +82,50 @@ const getCropperId = (e) => {
    return classId
 }
 
+const getIdOfTab = (e) => {
+    const classnames = e.target.className.split(" ")
+    // console.log("clicked")
+    const className = classnames[classnames.length -1]
+    return className
+}
+
 let removedOne = false;
 
 // Crop tab listener
+const tabClickListener = (e) => {
+
+    if(removedOne){
+        removedOne = false;
+        return;
+    }
+    
+    e.preventDefault()
+
+    const id = getIdOfTab(e)
+    const tabViewContent = document.querySelectorAll(".tab-view")
+    for(const view of tabViewContent){
+        if(view.className.indexOf(id) > 0){
+            console.log("found")
+            view.style.display = 'flex'
+        }else{
+            view.style.display = 'none'
+        }
+    }
+}
+
+
+// Remove tab listener = 
+const removeTabListener = (e) => {
+    
+    const element = document.querySelectorAll('.'+getIdOfTab({'target':e.target.parentElement.parentElement}))
+    // console.log()
+    if(!element)return;
+    for(const e of element){
+        e.remove()
+    }
+
+    setActiveTab(0)
+}
 const cropTabClickListener = (e) => {
 
     if(removedOne){
@@ -105,6 +157,8 @@ const cropTabRemoveListener = (e) => {
     const p = {'target':e.target.parentElement.parentElement}
 
     const id = getCropperId(p)
+
+    console.log(id)
  
     document.querySelector(".tab-cropper-content-"+id).remove()
     document.querySelector('.crop-tab-'+id).remove()
@@ -146,3 +200,68 @@ cropperTabAdder.addEventListener('click',e => {
 
 
 
+
+
+const resizerTabInnerHtml = `
+<div class="resize-img-container">
+                        <img src="./resizer-default.jpeg" alt="" class="resize-image-preview">
+                    </div>
+
+                    <div class="resize-img-actions">
+
+                        <h4 class="resize-img-actions-og-size">Orginiaal Image Size</h4>
+
+                        <input type="file" class="resize-img-action-file" style="display: none;">
+
+                        <h4 class="resize-img-new-image-percent">Reduce your image quality to 90%</h4>
+                        <h4 class="resize-img-new-img-size">New Image Size</h4>
+
+                        <input type="range" class="resize-img-resize-range-input" max="100" min="10" value="90">
+                        <div class="resize-img-buttons">
+                            <button class="btn resize-action-btn resize-new-image">
+                                <span class="material-symbols-outlined">upload</span>
+                            </button>
+
+                            <button class="btn resize-action-btn resize-new-img-download-btn">
+                                <span class="material-symbols-outlined">download</span>
+                            </button>
+                        </div>
+
+
+                        <canvas style="display: none;">
+
+                        </canvas>
+
+
+                        <img class="resize-img-download-img" />
+
+                        <a href="#" class="resize-download-link" download=""></a>
+
+`
+
+resizeTabAdder.addEventListener('click',(e) => {
+    e.preventDefault()
+    clearActiveTabs()
+
+    const tabs = document.querySelector(".tabs")
+    const tab  = document.createElement("div")
+
+    tab.innerHTML = `Resizer ${resizeTabNum} ${tabCloseButtomHTML}`
+    resizeTabNum +=1
+    tab.className =  `tab btn tab-active crop-tab resize-tab  resize-tab-`+resizeTabNum
+    tab.style.width = "100px"
+  
+    tabs.appendChild(tab)
+
+
+    const viewTabs = document.querySelector(".tab-content")
+    const viewTab = document.createElement("div")
+    viewTab.className = "tab-view resize-tab resize-tab-"+resizeTabNum
+    viewTab.innerHTML = resizerTabInnerHtml
+    viewTabs.appendChild(viewTab)
+
+    createAResizerImage(viewTab)
+    tab.addEventListener('click',tabClickListener)
+
+    tab.querySelector('button').addEventListener('click',removeTabListener)
+})
